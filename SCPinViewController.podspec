@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version  = '0.0.1'
   s.license  = 'MIT'
   s.summary  = 'Super customization pin code validator'
-  s.homepage = 'http://gitlab.sugarandcandy.ru/iOS/SCPinViewController'
+  s.homepage = 'http://github.sugarandcandy.ru/iOS/SCPinViewController'
   s.social_media_url = 'https://twitter.com/sugarandcandyru'
   s.authors  = { 'Sugar and Candy' => 'hi@sugarandcandy.ru' }
   s.source   = { :git => 'https://github.com/SugarAndCandy/SCPinViewController.git', :tag => s.version, :submodules => true }
