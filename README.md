@@ -15,10 +15,6 @@ Feature
 - Cocoapods
 - Customization
 
-### Installation
-Add the files to your project manually by dragging the SCPinViewController directory into your Xcode project.
-
-
 ### Installation with CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like SCPinViewController in your projects. See the ["Getting Started" guide for more information].
