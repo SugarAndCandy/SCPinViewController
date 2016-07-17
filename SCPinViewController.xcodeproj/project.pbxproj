@@ -68,8 +68,8 @@
 		942AA3791D396DE8008E39F9 = {
 			isa = PBXGroup;
 			children = (
-				942AA3841D396DE8008E39F9 /* SCPinViewController */,
 				942AA3831D396DE8008E39F9 /* Products */,
+				942AA3841D396DE8008E39F9 /* SCPinViewController */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,16 +84,16 @@
 		942AA3841D396DE8008E39F9 /* SCPinViewController */ = {
 			isa = PBXGroup;
 			children = (
-				942AA39C1D396DFD008E39F9 /* Source */,
+				942AA39C1D396DFD008E39F9 /* SCPinViewController */,
+				942AA3851D396DE8008E39F9 /* Supporting Files */,
 				942AA3881D396DE8008E39F9 /* AppDelegate.h */,
 				942AA3891D396DE8008E39F9 /* AppDelegate.m */,
+				942AA3911D396DE8008E39F9 /* Assets.xcassets */,
+				942AA3961D396DE8008E39F9 /* Info.plist */,
+				942AA3931D396DE8008E39F9 /* LaunchScreen.storyboard */,
+				942AA38E1D396DE8008E39F9 /* Main.storyboard */,
 				942AA38B1D396DE8008E39F9 /* ViewController.h */,
 				942AA38C1D396DE8008E39F9 /* ViewController.m */,
-				942AA38E1D396DE8008E39F9 /* Main.storyboard */,
-				942AA3911D396DE8008E39F9 /* Assets.xcassets */,
-				942AA3931D396DE8008E39F9 /* LaunchScreen.storyboard */,
-				942AA3961D396DE8008E39F9 /* Info.plist */,
-				942AA3851D396DE8008E39F9 /* Supporting Files */,
 			);
 			path = SCPinViewController;
 			sourceTree = "<group>";
@@ -103,10 +103,10 @@
 			children = (
 				942AA3861D396DE8008E39F9 /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		942AA39C1D396DFD008E39F9 /* Source */ = {
+		942AA39C1D396DFD008E39F9 /* SCPinViewController */ = {
 			isa = PBXGroup;
 			children = (
 				94AF9D841D3A948200C9B7E0 /* Appearance */,
@@ -116,7 +116,7 @@
 				942AA39E1D396E1A008E39F9 /* SCPinViewController.m */,
 				942AA39F1D396E1A008E39F9 /* SCPinViewController.xib */,
 			);
-			name = Source;
+			path = SCPinViewController;
 			sourceTree = "<group>";
 		};
 		944E832E1D3987AA004A565E /* images */ = {
@@ -129,7 +129,7 @@
 				944E83301D3987B3004A565E /* sc_img_touchid@2x.png */,
 				944E83311D3987B3004A565E /* sc_img_touchid@3x.png */,
 			);
-			name = images;
+			path = images;
 			sourceTree = "<group>";
 		};
 		94AF9D5E1D3A2BA100C9B7E0 /* View */ = {
@@ -138,7 +138,7 @@
 				94AF9D5F1D3A2BB300C9B7E0 /* PinButton */,
 				94AF9D631D3A2BCB00C9B7E0 /* PinView */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		94AF9D5F1D3A2BB300C9B7E0 /* PinButton */ = {
@@ -147,7 +147,7 @@
 				942AA3A21D397141008E39F9 /* SCPinButton.h */,
 				942AA3A31D397141008E39F9 /* SCPinButton.m */,
 			);
-			name = PinButton;
+			path = PinButton;
 			sourceTree = "<group>";
 		};
 		94AF9D631D3A2BCB00C9B7E0 /* PinView */ = {
@@ -156,7 +156,7 @@
 				94AF9D601D3A2BC800C9B7E0 /* SCPinView.h */,
 				94AF9D611D3A2BC800C9B7E0 /* SCPinView.m */,
 			);
-			name = PinView;
+			path = PinView;
 			sourceTree = "<group>";
 		};
 		94AF9D841D3A948200C9B7E0 /* Appearance */ = {
@@ -165,7 +165,7 @@
 				94AF9D851D3A94A400C9B7E0 /* SCPinAppearance.h */,
 				94AF9D861D3A94A400C9B7E0 /* SCPinAppearance.m */,
 			);
-			name = Appearance;
+			path = Appearance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +265,7 @@
 				942AA38F1D396DE8008E39F9 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		942AA3931D396DE8008E39F9 /* LaunchScreen.storyboard */ = {
@@ -273,6 +274,7 @@
 				942AA3941D396DE8008E39F9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
