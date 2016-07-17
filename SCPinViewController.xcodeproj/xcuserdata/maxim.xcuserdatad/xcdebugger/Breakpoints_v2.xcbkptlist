@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SCPinViewController/ViewController.m"
-            timestampString = "490380691.104651"
+            timestampString = "490450880.407001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-pinViewControllerDidSetWrongPin:"
             landmarkType = "5">
          </BreakpointContent>

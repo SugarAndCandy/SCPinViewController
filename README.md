@@ -33,19 +33,19 @@ pod 'SCPinViewController'
 ```
 
 
-### Usage
+### Usage for validate
 
 ```
 // Import the class
 #import <SCPinViewController/SCPinViewController.h>
+
 ...
 
-- (IBAction)showPinAction:(UIButton *)sender {
-    [SCPinViewController setNewAppearance:appearance];
-    SCPinViewController * vc = [[SCPinViewController alloc] initWithScope:SCPinViewControllerScopeValidate];
+- (void)showPinAction:(UIButton *)sender {
+    SCPinViewController *vc = [[SCPinViewController alloc] initWithScope:SCPinViewControllerScopeValidate];
 
     vc.dataSource = self;
-    vc.createDelegate = self;
+    vc.validateDelegate = self;
     [self presentViewController:vc animated:YES completion:nil];
 }
 
@@ -66,6 +66,75 @@ pod 'SCPinViewController'
 ...
 
 ```
+
+### Usage for create
+
+```
+// Import the class
+#import <SCPinViewController/SCPinViewController.h>
+
+...
+
+- (void)showPinAction:(UIButton *)sender {
+    SCPinViewController *vc = [[SCPinViewController alloc] initWithScope:SCPinViewControllerScopeCreate];
+    vc.createDelegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+-(void)pinViewController:(SCPinViewController *)pinViewController didSetNewPin:(NSString *)pin {
+    NSLog(@"pinViewController: %@",pinViewController);
+    [[NSUserDefaults standardUserDefaults] setObject:pin forKey:kViewControllerPin];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+...
+
+```
+
+
+### Apply custom appearance
+
+```
+// Import the class
+#import <SCPinViewController/SCPinViewController.h>
+#import <SCPinViewController/SCPinAppearance.h>
+
+...
+
+- (void)showPinAction:(UIButton *)sender {
+    SCPinAppearance *appearance = [SCPinAppearance defaultAppearance];
+    
+    appearance.titleText = @"Enter PIN";
+    appearance.numberButtonStrokeWitdh = 1.0f;
+    appearance.pinSize = CGSizeMake(8.0f, 8.0f);
+    [SCPinViewController setNewAppearance:appearance];
+
+    SCPinViewController *vc = [[SCPinViewController alloc] initWithScope:SCPinViewControllerScopeValidate];
+
+    vc.dataSource = self;
+    vc.validateDelegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+-(NSString *)codeForPinViewController:(SCPinViewController *)pinViewController {
+    return @"1234";
+}
+
+
+-(void)pinViewControllerDidSetWrongPin:(SCPinViewController *)pinViewController {
+	NSLog(@"Wrong")
+}
+
+-(void)pinViewControllerDidSetСorrectPin:(SCPinViewController *)pinViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+
+...
+
+```
+
 
 ![DropAlert](https://github.com/SugarAndCandy/SCPinViewController/blob/master/Screen.png)
 

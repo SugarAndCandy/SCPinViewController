@@ -27,6 +27,7 @@ NSString * const kViewControllerPin = @"kViewControllerPin";
     SCPinViewController *vc;
     
     SCPinAppearance *appearance = [SCPinAppearance defaultAppearance];
+    appearance.numberButtonstrokeEnabled = NO;
     if (pin.length > 0) {
         appearance.titleText = @"Enter PIN";
         [SCPinViewController setNewAppearance:appearance];
