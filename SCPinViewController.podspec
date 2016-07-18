@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'SCPinViewController'
-  s.version  = '0.0.3'
+  s.version  = '1.0.0'
   s.license  = 'MIT'
   s.summary  = 'Super customization pin code validator'
   s.homepage = 'http://github.sugarandcandy.ru/iOS/SCPinViewController'
