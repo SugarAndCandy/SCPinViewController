@@ -23,26 +23,36 @@ NSString * const kViewControllerPin = @"kViewControllerPin";
 }
 
 - (IBAction)showPinAction:(UIButton *)sender {
-    NSString *pin = [[NSUserDefaults standardUserDefaults] objectForKey:kViewControllerPin];
     SCPinViewController *vc;
     
     SCPinAppearance *appearance = [SCPinAppearance defaultAppearance];
     appearance.numberButtonstrokeEnabled = NO;
-    if (pin.length > 0) {
-        appearance.titleText = @"Enter PIN";
-        [SCPinViewController setNewAppearance:appearance];
-        vc = [[SCPinViewController alloc] initWithScope:SCPinViewControllerScopeValidate];
-        
-    } else {
-        appearance.titleText = @"Create PIN";
-        [SCPinViewController setNewAppearance:appearance];
-        vc = [[SCPinViewController alloc] initWithScope:SCPinViewControllerScopeCreate];
-    }
+    appearance.titleText = @"Enter PIN";
+    [SCPinViewController setNewAppearance:appearance];
+    vc = [[SCPinViewController alloc] initWithScope:SCPinViewControllerScopeValidate];
     
     vc.dataSource = self;
-    vc.createDelegate = self;
     vc.validateDelegate = self;
     [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (IBAction)createPinAction:(UIButton *)sender {
+    SCPinAppearance *appearance = [SCPinAppearance defaultAppearance];
+    SCPinViewController *vc;
+    
+    appearance.titleText = @"Create PIN";
+    [SCPinViewController setNewAppearance:appearance];
+    vc = [[SCPinViewController alloc] initWithScope:SCPinViewControllerScopeCreate];
+    
+    vc.createDelegate = self;
+    UINavigationController *navigation = [[UINavigationController alloc]initWithRootViewController:vc];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    [vc.navigationItem setLeftBarButtonItems:@[item]];
+    [self presentViewController:navigation animated:YES completion:nil];
+}
+
+-(void)cancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,12 +84,12 @@ NSString * const kViewControllerPin = @"kViewControllerPin";
 }
 
 -(void)pinViewControllerDidSetWrongPin:(SCPinViewController *)pinViewController {
-
+    
 }
 
 -(void)pinViewControllerDidSetСorrectPin:(SCPinViewController *)pinViewController{
     [self dismissViewControllerAnimated:YES completion:nil];
-
+    
 }
 
 

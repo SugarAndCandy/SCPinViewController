@@ -98,6 +98,9 @@ static SCPinAppearance *appearance;
             [self touchIDVerification];
         }
     }
+    if (self.scope == SCPinViewControllerScopeCreate) {
+        [self.touchIDButton setHidden:YES];
+    }
 }
 
 -(void)configureView {
@@ -299,7 +302,7 @@ static SCPinAppearance *appearance;
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
         __weak SCPinViewController *weakSelf = self;
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                localizedReason:NSLocalizedStringFromTable(@"Pincode TouchID", @"JKLockScreen", nil)
+                localizedReason:@"Pincode TouchID"
                           reply:^(BOOL success, NSError * authenticationError) {
                               if (success) {
                                   __strong SCPinViewController *strongSelf = weakSelf;

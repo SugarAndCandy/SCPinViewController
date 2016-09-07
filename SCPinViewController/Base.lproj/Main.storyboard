@@ -24,11 +24,20 @@
                                     <action selector="showPinAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i0b-9v-Sc2"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LlZ-vv-iUN">
+                                <rect key="frame" x="265" y="247" width="71" height="30"/>
+                                <state key="normal" title="Create pin"/>
+                                <connections>
+                                    <action selector="createPinAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2KC-sN-CXt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LlZ-vv-iUN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Um5-K2-rgV"/>
                             <constraint firstItem="aEf-yW-cOY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YjF-cz-mhy"/>
                             <constraint firstItem="aEf-yW-cOY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dlw-R9-IPM"/>
+                            <constraint firstItem="aEf-yW-cOY" firstAttribute="top" secondItem="LlZ-vv-iUN" secondAttribute="bottom" constant="8" id="jDp-Vn-TZU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xEW-6b-i7V"/>
