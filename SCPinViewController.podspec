@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'SCPinViewController'
-  s.version  = '1.0.0'
+  s.version  = '1.0.1'
   s.license  = 'MIT'
   s.summary  = 'Super customization pin code validator'
   s.homepage = 'https://github.com/SugarAndCandy/SCPinViewController.git'
@@ -13,7 +13,9 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'SCPinViewController/**/SC*.h'
   s.source_files = 'SCPinViewController/**/SC*.{m,h}'
-  s.resource_bundles = {
-    'SCPinViewControllerBudle' => ['SCPinViewController/**/*.{png}','SCPinViewController/**/*.{xib}']
-  }
+  #s.resource_bundles = {
+  #  'SCPinViewController' => ['SCPinViewController/**/*.{png}']
+  #}
+  s.resources = ['SCPinViewController/**/*.{xib}','SCPinViewController/**/*.{png}']
+
 end

@@ -49,7 +49,9 @@ static SCPinAppearance *appearance;
 #pragma mark - initialization
 
 - (instancetype)initWithScope:(SCPinViewControllerScope)scope {
-    self = [super initWithNibName:NSStringFromClass([SCPinViewController class]) bundle:nil];
+    NSBundle *budle = [NSBundle bundleForClass:[SCPinViewController class]];
+    NSLog(@"%@", budle);
+    self = [super initWithNibName:NSStringFromClass([SCPinViewController class]) bundle:budle];
     if (self) {
         _scope = scope;
         if (!appearance) {
@@ -92,6 +94,10 @@ static SCPinAppearance *appearance;
             [self.touchIDButton setHidden:NO];
         }
     }
+    
+    if (!self.touchIDButton.isHidden) {
+        self.touchIDButton.hidden = !appearance.touchIDButtonEnabled;
+    }
     if ([self.dataSource respondsToSelector:@selector(showTouchIDVerificationImmediately)]) {
         BOOL immediately = [self.dataSource showTouchIDVerificationImmediately];
         if (immediately) {
@@ -116,6 +122,14 @@ static SCPinAppearance *appearance;
         [button setNeedsDisplay];
     }
     
+    NSBundle *bundle = [NSBundle bundleForClass:[SCPinViewController class]];
+
+    UIImage *deleteButtonImage = [UIImage imageNamed:@"sc_img_delete" inBundle:bundle compatibleWithTraitCollection:nil];
+    [self.deleteButton setImage:deleteButtonImage forState:UIControlStateNormal];
+    
+    UIImage *touchIDButtonImage = [UIImage imageNamed:@"sc_img_touchid" inBundle:bundle compatibleWithTraitCollection:nil];
+    [self.touchIDButton setImage:touchIDButtonImage forState:UIControlStateNormal];
+
     [self.deleteButton setTintColor:_appearance.deleteButtonColor];
     [self.touchIDButton setTintColor:_appearance.touchIDButtonColor];
 
@@ -126,6 +140,8 @@ static SCPinAppearance *appearance;
     self.supportLabel.text = _appearance.supportText;
     self.supportLabel.font = _appearance.supportTextFont;
     self.supportLabel.textColor = _appearance.supportTextColor;
+    
+    self.touchIDButton.hidden = !appearance.touchIDButtonEnabled;
 
 }
 
