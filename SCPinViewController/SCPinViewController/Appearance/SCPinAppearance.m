@@ -55,6 +55,7 @@
     self.supportTextColor = defaultColor;
     
     self.touchIDText = @"Put finger";
+    self.touchIDVerification = @"Pincode TouchID";
 }
 
 

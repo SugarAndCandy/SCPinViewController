@@ -318,7 +318,7 @@ static SCPinAppearance *appearance;
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
         __weak SCPinViewController *weakSelf = self;
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                localizedReason:@"Pincode TouchID"
+                localizedReason:_appearance.touchIDVerification
                           reply:^(BOOL success, NSError * authenticationError) {
                               if (success) {
                                   __strong SCPinViewController *strongSelf = weakSelf;

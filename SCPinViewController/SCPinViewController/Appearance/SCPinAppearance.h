@@ -38,5 +38,6 @@
 @property (nonatomic, strong) UIFont *supportTextFont;
 
 @property (nonatomic, strong) NSString *touchIDText;
+@property (nonatomic, strong) NSString *touchIDVerification;
 
 @end
