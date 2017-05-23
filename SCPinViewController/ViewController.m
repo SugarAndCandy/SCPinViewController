@@ -28,6 +28,9 @@ NSString * const kViewControllerPin = @"kViewControllerPin";
     SCPinAppearance *appearance = [SCPinAppearance defaultAppearance];
     appearance.numberButtonstrokeEnabled = NO;
     appearance.titleText = @"Enter PIN";
+    
+    appearance.cancelButtonText = @"Close";
+    
     [SCPinViewController setNewAppearance:appearance];
     vc = [[SCPinViewController alloc] initWithScope:SCPinViewControllerScopeValidate];
     
@@ -92,6 +95,8 @@ NSString * const kViewControllerPin = @"kViewControllerPin";
     
 }
 
-
+- (void)pinViewControllerDidCancel:(SCPinViewController *)pinViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

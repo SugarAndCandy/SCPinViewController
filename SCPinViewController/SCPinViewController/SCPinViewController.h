@@ -42,6 +42,14 @@ typedef NS_ENUM(NSInteger, SCPinViewControllerScope) {
  *  when user set correct pin code calling this delegate method
  */
 -(void)pinViewControllerDidSetСorrectPin:(SCPinViewController *)pinViewController;
+
+@optional
+/**
+ *  when user cancel calling this delegate method
+ */
+-(void)pinViewControllerDidCancel:(SCPinViewController *)pinViewController;
+
+
 @end
 
 @protocol SCPinViewControllerCreateDelegate <NSObject>
@@ -50,7 +58,17 @@ typedef NS_ENUM(NSInteger, SCPinViewControllerScope) {
  *  when user set new pin code calling this delegate method
  */
 -(void)pinViewController:(SCPinViewController *)pinViewController didSetNewPin:(NSString *)pin;
+/**
+*  length for pin
+*/
 -(NSInteger)lengthForPin;
+
+@optional
+/**
+ *  when user cancel calling this delegate method
+ */
+-(void)pinViewControllerDidCancel:(SCPinViewController *)pinViewController;
+
 @end
 
 @protocol SCPinViewControllerDataSource <NSObject>

@@ -56,6 +56,11 @@
     
     self.touchIDText = @"Put finger";
     self.touchIDVerification = @"Pincode TouchID";
+    
+    self.cancelButtonEnabled = YES;
+    self.cancelButtonText = @"Cancel";
+    self.cancelButtonTextFont = [UIFont fontWithName:@"HelveticaNeue-Thin" size:16.0f];;
+    self.cancelButtonTextColor = defaultColor;
 }
 
 

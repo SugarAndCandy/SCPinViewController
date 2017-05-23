@@ -40,4 +40,9 @@
 @property (nonatomic, strong) NSString *touchIDText;
 @property (nonatomic, strong) NSString *touchIDVerification;
 
+@property (nonatomic, assign) BOOL cancelButtonEnabled;
+@property (nonatomic, strong) NSString *cancelButtonText;
+@property (nonatomic, strong) UIColor *cancelButtonTextColor;
+@property (nonatomic, strong) UIFont *cancelButtonTextFont;
+
 @end

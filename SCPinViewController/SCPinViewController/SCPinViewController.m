@@ -20,7 +20,7 @@ static SCPinAppearance *appearance;
 @interface SCPinViewController ()
 @property (nonatomic, strong) SCPinAppearance *appearance;
 
-
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *touchIDButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *supportLabel;
@@ -58,7 +58,6 @@ static SCPinAppearance *appearance;
             appearance = [SCPinAppearance defaultAppearance];
         }
         _appearance = appearance;
-
 
     }
     return self;
@@ -107,6 +106,8 @@ static SCPinAppearance *appearance;
     if (self.scope == SCPinViewControllerScopeCreate) {
         [self.touchIDButton setHidden:YES];
     }
+    
+    
 }
 
 -(void)configureView {
@@ -142,7 +143,11 @@ static SCPinAppearance *appearance;
     self.supportLabel.textColor = _appearance.supportTextColor;
     
     self.touchIDButton.hidden = !appearance.touchIDButtonEnabled;
-
+    
+    self.cancelButton.hidden = !appearance.cancelButtonEnabled;
+    [self.cancelButton setTitle:_appearance.cancelButtonText forState:UIControlStateNormal];
+    [self.cancelButton setTitleColor:_appearance.cancelButtonTextColor forState:UIControlStateNormal];
+    self.cancelButton.titleLabel.font = _appearance.cancelButtonTextFont;
 }
 
 
@@ -360,6 +365,17 @@ static SCPinAppearance *appearance;
     [self removeLastPincode];
     AudioServicesPlaySystemSound(0x450);
 
+}
+
+- (IBAction)cancelButtonAction:(id)sender {
+    
+    if (self.scope == SCPinViewControllerScopeCreate && [self.createDelegate respondsToSelector:@selector(pinViewControllerDidCancel:)]) {
+        [self.createDelegate pinViewControllerDidCancel:self];
+    }
+    
+    if (self.scope == SCPinViewControllerScopeValidate && [self.validateDelegate respondsToSelector:@selector(pinViewControllerDidCancel:)]) {
+        [self.validateDelegate pinViewControllerDidCancel:self];
+    }
 }
 
 @end
