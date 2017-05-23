@@ -33,6 +33,8 @@
 @property (nonatomic, strong) UIColor *titleTextColor;
 @property (nonatomic, strong) UIFont *titleTextFont;
 
+@property (nonatomic, strong) NSString *confirmText;
+
 @property (nonatomic, strong) NSString *supportText;
 @property (nonatomic, strong) UIColor *supportTextColor;
 @property (nonatomic, strong) UIFont *supportTextFont;

@@ -14,7 +14,8 @@
 @class SCPinAppearance;
 typedef NS_ENUM(NSInteger, SCPinViewControllerScope) {
     SCPinViewControllerScopeValidate,
-    SCPinViewControllerScopeCreate
+    SCPinViewControllerScopeCreate,
+    SCPinViewControllerScopeConfirm
 };
 
 @interface SCPinViewController : UIViewController

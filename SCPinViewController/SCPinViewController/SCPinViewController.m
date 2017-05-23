@@ -30,6 +30,7 @@ static SCPinAppearance *appearance;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewForPinsLayoutConstraint;
 
 @property (nonatomic, strong) NSString *currentPin;
+@property (nonatomic, strong) NSString *pinToConfirm;
 @property (nonatomic, assign) BOOL enable;
 @property (nonatomic, assign) BOOL touchIDPassedValidation;
 @end
@@ -105,6 +106,7 @@ static SCPinAppearance *appearance;
     }
     if (self.scope == SCPinViewControllerScopeCreate) {
         [self.touchIDButton setHidden:YES];
+        [self.cancelButton setHidden:YES];
     }
     
     
@@ -173,10 +175,11 @@ static SCPinAppearance *appearance;
 #pragma mark - Controller logic
 
 -(void)createPinView {
-    NSInteger length;
+    NSInteger length = 0;
     NSInteger currentPinLength = [self.currentPin length];
     switch (self.scope) {
-        case SCPinViewControllerScopeCreate: {
+        case SCPinViewControllerScopeCreate:
+        case SCPinViewControllerScopeConfirm:{
             length = [self.createDelegate lengthForPin];
             break;
         }
@@ -223,9 +226,10 @@ static SCPinAppearance *appearance;
 
 - (void)appendingPincode:(NSString *)pincode {
     NSString * appended = [self.currentPin stringByAppendingString:pincode];
-    NSUInteger length;
+    NSUInteger length = 0;
     switch (self.scope) {
-        case SCPinViewControllerScopeCreate: {
+        case SCPinViewControllerScopeCreate:
+        case SCPinViewControllerScopeConfirm: {
             length = MIN([appended length], [self.createDelegate lengthForPin]);
             break;
         }
@@ -262,7 +266,23 @@ static SCPinAppearance *appearance;
         }
         case SCPinViewControllerScopeCreate: {
             if ([currentPin length] == [self.createDelegate lengthForPin]) {
-                [self.createDelegate pinViewController:self didSetNewPin:currentPin];
+//                [self.createDelegate pinViewController:self didSetNewPin:currentPin];
+                _scope = SCPinViewControllerScopeConfirm;
+                _titleLabel.text = _appearance.confirmText;
+                _pinToConfirm = _currentPin;
+                [self clearCurrentPin];
+                [self createPinView];
+            }
+            break;
+        }
+        case SCPinViewControllerScopeConfirm: {
+            if ([currentPin length] == [self.createDelegate lengthForPin]) {
+                
+                if ([_pinToConfirm isEqualToString:_currentPin]) {
+                    [self.createDelegate pinViewController:self didSetNewPin:currentPin];
+                }
+                
+               
             }
             break;
         }
@@ -369,7 +389,7 @@ static SCPinAppearance *appearance;
 
 - (IBAction)cancelButtonAction:(id)sender {
     
-    if (self.scope == SCPinViewControllerScopeCreate && [self.createDelegate respondsToSelector:@selector(pinViewControllerDidCancel:)]) {
+    if ((self.scope == SCPinViewControllerScopeCreate || self.scope == SCPinViewControllerScopeConfirm) && [self.createDelegate respondsToSelector:@selector(pinViewControllerDidCancel:)]) {
         [self.createDelegate pinViewControllerDidCancel:self];
     }
     

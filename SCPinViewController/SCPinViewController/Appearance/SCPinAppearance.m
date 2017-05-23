@@ -46,9 +46,11 @@
     self.touchIDButtonEnabled = YES;
     self.touchIDButtonColor = defaultColor;
     
-    self.titleText = @"Enter code";
+    self.titleText = @"Enter Pin";
     self.titleTextFont = defaultFont;
     self.titleTextColor = defaultColor;
+    
+    self.confirmText = @"Confirm Pin";
     
     self.supportText = nil;
     self.supportTextFont = defaultFont;
