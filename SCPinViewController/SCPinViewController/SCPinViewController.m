@@ -106,7 +106,6 @@ static SCPinAppearance *appearance;
     }
     if (self.scope == SCPinViewControllerScopeCreate) {
         [self.touchIDButton setHidden:YES];
-        [self.cancelButton setHidden:YES];
     }
     
     
