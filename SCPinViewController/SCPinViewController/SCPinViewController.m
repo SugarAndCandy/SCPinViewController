@@ -281,8 +281,7 @@ static SCPinAppearance *appearance;
                     [self.createDelegate pinViewController:self didSetNewPin:currentPin];
                 } else {
                     // wrong confirmation pin
-                    
-                    
+                    [self wrongConfirmPin];
                 }
                 
                
