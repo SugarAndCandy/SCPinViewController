@@ -279,6 +279,10 @@ static SCPinAppearance *appearance;
                 
                 if ([_pinToConfirm isEqualToString:_currentPin]) {
                     [self.createDelegate pinViewController:self didSetNewPin:currentPin];
+                } else {
+                    // wrong confirmation pin
+                    
+                    
                 }
                 
                
@@ -318,6 +322,23 @@ static SCPinAppearance *appearance;
         if ([strongSelf.validateDelegate respondsToSelector:@selector(pinViewControllerDidSetWrongPin:)]) {
             [strongSelf.validateDelegate pinViewControllerDidSetWrongPin:strongSelf];
         }
+        [strongSelf clearCurrentPin];
+        [strongSelf createPinView];
+        strongSelf.enable = YES;
+    });
+    
+}
+
+- (void)wrongConfirmPin {
+    __weak SCPinViewController *weakSelf = self;
+    self.enable = NO;
+    NSTimeInterval delay = 0.25f;
+    dispatch_time_t delayInSeconds = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+    dispatch_after(delayInSeconds, dispatch_get_main_queue(), ^(void){
+        __strong SCPinViewController *strongSelf = weakSelf;
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        CAAnimation * shake = [self makeShakeAnimation];
+        [strongSelf.viewForPins.layer addAnimation:shake forKey:@"shake"];
         [strongSelf clearCurrentPin];
         [strongSelf createPinView];
         strongSelf.enable = YES;
