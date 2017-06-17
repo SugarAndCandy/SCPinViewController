@@ -199,7 +199,8 @@
 				TargetAttributes = {
 					942AA3811D396DE8008E39F9 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = LXCS739P9Z;
+						DevelopmentTeam = 6PHPGAAG6M;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -368,12 +369,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6PHPGAAG6M;
 				INFOPLIST_FILE = SCPinViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.sugarandcandy.SCPinViewController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "31637879-d753-41a1-a98d-dfbebd0f3f2a";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Development";
 			};
 			name = Debug;
 		};
@@ -382,13 +385,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 6PHPGAAG6M;
 				INFOPLIST_FILE = SCPinViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.sugarandcandy.SCPinViewController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "af0a1a07-375d-405c-a8e5-010f0719edb8";
+				PROVISIONING_PROFILE_SPECIFIER = "XC Ad Hoc: *";
 			};
 			name = Release;
 		};

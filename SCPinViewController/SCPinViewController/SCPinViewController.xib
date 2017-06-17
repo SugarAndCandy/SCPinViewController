@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SCPinViewController">
             <connections>
+                <outlet property="cancelButton" destination="8nZ-AS-jRy" id="063-2M-5Wu"/>
                 <outlet property="deleteButton" destination="3pj-y3-I1G" id="ich-E1-t7F"/>
                 <outlet property="supportLabel" destination="Teh-LT-7WE" id="STT-zx-tll"/>
                 <outlet property="titleLabel" destination="gys-AZ-m9S" id="Tey-Za-8K7"/>
@@ -243,10 +244,21 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nZ-AS-jRy">
+                    <rect key="frame" x="311" y="616" width="48" height="31"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelButtonAction:" destination="-1" eventType="touchUpInside" id="YWF-Vi-ycp"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="gys-AZ-m9S" secondAttribute="trailing" constant="15" id="4Xm-Fe-S3x"/>
+                <constraint firstAttribute="trailing" secondItem="8nZ-AS-jRy" secondAttribute="trailing" constant="16" id="B7V-Uk-neC"/>
                 <constraint firstAttribute="trailing" secondItem="Teh-LT-7WE" secondAttribute="trailing" constant="15" id="Iw0-70-Tdg"/>
                 <constraint firstItem="pWx-bu-RGC" firstAttribute="height" secondItem="S2F-Z6-ZcP" secondAttribute="height" id="J3d-8E-10S"/>
                 <constraint firstItem="Teh-LT-7WE" firstAttribute="top" secondItem="gys-AZ-m9S" secondAttribute="bottom" constant="8" id="M8w-ja-kiT"/>
@@ -255,6 +267,7 @@
                 <constraint firstItem="pWx-bu-RGC" firstAttribute="width" secondItem="S2F-Z6-ZcP" secondAttribute="width" id="T1I-TA-Dcz"/>
                 <constraint firstItem="3pj-y3-I1G" firstAttribute="top" secondItem="hRW-qp-vY4" secondAttribute="bottom" constant="30" id="Tgv-wF-TK0"/>
                 <constraint firstItem="pWx-bu-RGC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WeJ-TK-n8g"/>
+                <constraint firstAttribute="bottom" secondItem="8nZ-AS-jRy" secondAttribute="bottom" constant="20" id="aHF-eh-Jak"/>
                 <constraint firstItem="hRW-qp-vY4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="dOz-Lk-YGX"/>
                 <constraint firstItem="pWx-bu-RGC" firstAttribute="leading" secondItem="sTe-0d-KIs" secondAttribute="trailing" constant="29" id="eod-HX-sxu"/>
                 <constraint firstItem="sTe-0d-KIs" firstAttribute="top" secondItem="hRW-qp-vY4" secondAttribute="bottom" constant="23" id="gdM-iW-f7y"/>

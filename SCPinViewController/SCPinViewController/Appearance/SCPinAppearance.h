@@ -33,11 +33,18 @@
 @property (nonatomic, strong) UIColor *titleTextColor;
 @property (nonatomic, strong) UIFont *titleTextFont;
 
+@property (nonatomic, strong) NSString *confirmText;
+
 @property (nonatomic, strong) NSString *supportText;
 @property (nonatomic, strong) UIColor *supportTextColor;
 @property (nonatomic, strong) UIFont *supportTextFont;
 
 @property (nonatomic, strong) NSString *touchIDText;
 @property (nonatomic, strong) NSString *touchIDVerification;
+
+@property (nonatomic, assign) BOOL cancelButtonEnabled;
+@property (nonatomic, strong) NSString *cancelButtonText;
+@property (nonatomic, strong) UIColor *cancelButtonTextColor;
+@property (nonatomic, strong) UIFont *cancelButtonTextFont;
 
 @end

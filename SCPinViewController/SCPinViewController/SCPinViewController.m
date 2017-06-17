@@ -20,7 +20,7 @@ static SCPinAppearance *appearance;
 @interface SCPinViewController ()
 @property (nonatomic, strong) SCPinAppearance *appearance;
 
-
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *touchIDButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *supportLabel;
@@ -30,6 +30,7 @@ static SCPinAppearance *appearance;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewForPinsLayoutConstraint;
 
 @property (nonatomic, strong) NSString *currentPin;
+@property (nonatomic, strong) NSString *pinToConfirm;
 @property (nonatomic, assign) BOOL enable;
 @property (nonatomic, assign) BOOL touchIDPassedValidation;
 @end
@@ -58,7 +59,6 @@ static SCPinAppearance *appearance;
             appearance = [SCPinAppearance defaultAppearance];
         }
         _appearance = appearance;
-
 
     }
     return self;
@@ -107,6 +107,8 @@ static SCPinAppearance *appearance;
     if (self.scope == SCPinViewControllerScopeCreate) {
         [self.touchIDButton setHidden:YES];
     }
+    
+    
 }
 
 -(void)configureView {
@@ -142,7 +144,11 @@ static SCPinAppearance *appearance;
     self.supportLabel.textColor = _appearance.supportTextColor;
     
     self.touchIDButton.hidden = !appearance.touchIDButtonEnabled;
-
+    
+    self.cancelButton.hidden = !appearance.cancelButtonEnabled;
+    [self.cancelButton setTitle:_appearance.cancelButtonText forState:UIControlStateNormal];
+    [self.cancelButton setTitleColor:_appearance.cancelButtonTextColor forState:UIControlStateNormal];
+    self.cancelButton.titleLabel.font = _appearance.cancelButtonTextFont;
 }
 
 
@@ -168,10 +174,11 @@ static SCPinAppearance *appearance;
 #pragma mark - Controller logic
 
 -(void)createPinView {
-    NSInteger length;
+    NSInteger length = 0;
     NSInteger currentPinLength = [self.currentPin length];
     switch (self.scope) {
-        case SCPinViewControllerScopeCreate: {
+        case SCPinViewControllerScopeCreate:
+        case SCPinViewControllerScopeConfirm:{
             length = [self.createDelegate lengthForPin];
             break;
         }
@@ -218,9 +225,10 @@ static SCPinAppearance *appearance;
 
 - (void)appendingPincode:(NSString *)pincode {
     NSString * appended = [self.currentPin stringByAppendingString:pincode];
-    NSUInteger length;
+    NSUInteger length = 0;
     switch (self.scope) {
-        case SCPinViewControllerScopeCreate: {
+        case SCPinViewControllerScopeCreate:
+        case SCPinViewControllerScopeConfirm: {
             length = MIN([appended length], [self.createDelegate lengthForPin]);
             break;
         }
@@ -257,7 +265,26 @@ static SCPinAppearance *appearance;
         }
         case SCPinViewControllerScopeCreate: {
             if ([currentPin length] == [self.createDelegate lengthForPin]) {
-                [self.createDelegate pinViewController:self didSetNewPin:currentPin];
+//                [self.createDelegate pinViewController:self didSetNewPin:currentPin];
+                _scope = SCPinViewControllerScopeConfirm;
+                _titleLabel.text = _appearance.confirmText;
+                _pinToConfirm = _currentPin;
+                [self clearCurrentPin];
+                [self createPinView];
+            }
+            break;
+        }
+        case SCPinViewControllerScopeConfirm: {
+            if ([currentPin length] == [self.createDelegate lengthForPin]) {
+                
+                if ([_pinToConfirm isEqualToString:_currentPin]) {
+                    [self.createDelegate pinViewController:self didSetNewPin:currentPin];
+                } else {
+                    // wrong confirmation pin
+                    [self wrongConfirmPin];
+                }
+                
+               
             }
             break;
         }
@@ -294,6 +321,23 @@ static SCPinAppearance *appearance;
         if ([strongSelf.validateDelegate respondsToSelector:@selector(pinViewControllerDidSetWrongPin:)]) {
             [strongSelf.validateDelegate pinViewControllerDidSetWrongPin:strongSelf];
         }
+        [strongSelf clearCurrentPin];
+        [strongSelf createPinView];
+        strongSelf.enable = YES;
+    });
+    
+}
+
+- (void)wrongConfirmPin {
+    __weak SCPinViewController *weakSelf = self;
+    self.enable = NO;
+    NSTimeInterval delay = 0.25f;
+    dispatch_time_t delayInSeconds = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+    dispatch_after(delayInSeconds, dispatch_get_main_queue(), ^(void){
+        __strong SCPinViewController *strongSelf = weakSelf;
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        CAAnimation * shake = [self makeShakeAnimation];
+        [strongSelf.viewForPins.layer addAnimation:shake forKey:@"shake"];
         [strongSelf clearCurrentPin];
         [strongSelf createPinView];
         strongSelf.enable = YES;
@@ -360,6 +404,17 @@ static SCPinAppearance *appearance;
     [self removeLastPincode];
     AudioServicesPlaySystemSound(0x450);
 
+}
+
+- (IBAction)cancelButtonAction:(id)sender {
+    
+    if ((self.scope == SCPinViewControllerScopeCreate || self.scope == SCPinViewControllerScopeConfirm) && [self.createDelegate respondsToSelector:@selector(pinViewControllerDidCancel:)]) {
+        [self.createDelegate pinViewControllerDidCancel:self];
+    }
+    
+    if (self.scope == SCPinViewControllerScopeValidate && [self.validateDelegate respondsToSelector:@selector(pinViewControllerDidCancel:)]) {
+        [self.validateDelegate pinViewControllerDidCancel:self];
+    }
 }
 
 @end
